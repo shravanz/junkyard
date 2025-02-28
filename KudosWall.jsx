@@ -81,9 +81,8 @@ export default function KudosWall() {
     <div className="kudos-wall">
       <div className="kudos-container">
         <div className="kudos-header">
-          <h1 className="kudos-title">Kudos Wall</h1>
+          <h1 className="kudos-title">Kudos Wall🥳</h1>
           <button className="give-kudos-btn" onClick={() => setIsGivingKudos(true)}>
-            
             Give Kudos
             <PlusCircle className="plus-icon" /> 
           </button>

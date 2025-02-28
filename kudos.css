@@ -23,7 +23,8 @@ body {
 .kudos-container {
   max-width: 1200px;
   margin: 0 auto;
-  background-color: rgb(243 235 234 / 80%);
+  background-color: rgba(243, 234, 242, 0.8);
+  /* background-image: linear-gradient(to bottom, #c4b896, #d9c36c, #a7ccd4, #dcdbb0, #e8ebc3); */
   border-radius: 20px;
   padding: 2rem;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
@@ -103,65 +104,47 @@ body {
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 1.5rem;
 }
-/* 
-.kudos-card {
-  background: var(--card-bg);
-  border-radius: 15px;
-  overflow: hidden;
-  transition: all 0.3s ease;
-  cursor: pointer;
-  box-shadow: 0 4px 6px var(--shadow-color);
-}
-
-.kudos-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 12px var(--shadow-color);
-}
-
-.kudos-card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  padding: 1rem;
-  border-bottom: 1px solid var(--accent-color);
-}
-
-.kudos-card-avatar {
-  display: flex;
-  align-items: flex-start;
-  gap: 1rem;
-}
-
-.kudos-card-info {
-  text-align: left;
-}
-
-.kudos-card-footer {
-  background: #f8f8f8;
-  padding: 0.5rem 1rem;
-} */
 
 .kudos-card {
-  background: linear-gradient(135deg, #fdfbfb, #f3e6ff); /* Soft pastel gradient */
+  position: relative;
+  background: linear-gradient(135deg, #fdfbfb, #f3e6ff);
   border-radius: 12px;
-  overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
-  box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.2);
-  
   padding: 1.2rem;
   width: 260px;
   min-height: 180px;
-  
-  position: relative;
+  box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.2);
   transform: rotate(-2deg);
-
-  /* Add sticky note effect */
-  border: 2px solid #d6b3ff; /* Subtle purple accent */
 }
 
 .kudos-card:nth-child(even) {
   transform: rotate(3deg); /* Alternating tilt */
+}
+
+.kudos-pin {
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  /* transform: translateX(-50%) rotate(-10deg); Slight tilt for realism */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.4s ease-in-out;
+}
+
+/* Pin Hover Animation */
+.kudos-card:hover .kudos-pin {
+  transform: translateX(-50%) translateY(-5px);
+  /* transform: translateX(-50%) rotate(0deg) scale(1.05) */
+}
+
+/* Pin Icon */
+.pin-icon {
+  color: #ff4343; /* Adjust color as needed */
+  width: 35px;
+  height: 35px;
+  filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.2));
+
 }
 
 .kudos-card:hover {
@@ -381,6 +364,7 @@ body {
   border-radius: 15px;
   font-size: 0.9rem;
   font-weight: bold;
+  width: 85px;
 }
 
 .give-kudos-form {
@@ -449,14 +433,15 @@ body {
 }
 
 .give-kudos-textarea {
-  min-height: 100px;
+  min-height: 80px;
+  max-height: 200px; /* Prevents excessive growth */
   resize: vertical;
 }
 
 .give-kudos-footer {
   display: flex;
   justify-content: space-between;
-  margin-top: 1.5rem;
+  margin-top: 15px;
 }
 
 
@@ -557,3 +542,25 @@ body {
     inset: 0;
   }
 
+  .kudos-heart-container {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    gap: 5px;
+  }
+  
+  .kudos-heart {
+    transition: fill 0.2s ease-in-out;
+    stroke: rgb(249, 90, 90);
+    fill: transparent;
+  }
+  
+  .hearted {
+    fill: rgb(249, 90, 90);
+  }
+  
+  .heart-count {
+    font-size: 14px;
+    font-weight: bold;
+    color: #555;
+  }
