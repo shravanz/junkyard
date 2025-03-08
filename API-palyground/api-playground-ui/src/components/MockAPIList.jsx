@@ -7,7 +7,7 @@ const MockAPIList = ({ mockAPIs, onDelete }) => {
       {Object.entries(mockAPIs).map(([path, methods]) => (
         <ListItem key={path} divider className="mock-api-item" style={{ flexDirection: "column", alignItems: "flex-start" }}>
           <Typography variant="h6" style={{ fontWeight: "bold" }}>
-            {path}
+            {path} 
           </Typography>
           {Object.entries(methods).map(([method, response]) => (
             <div key={`${path}-${method}`} style={{ width: "100%", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
