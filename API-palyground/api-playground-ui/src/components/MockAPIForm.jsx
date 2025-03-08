@@ -20,6 +20,7 @@ const MockAPIForm = ({ onCreate }) => {
     <form onSubmit={handleSubmit(onSubmit)} style={{ display: "flex", flexDirection: "column", gap: "10px", marginBottom: "20px" }}>
       <TextField 
         label="Path" 
+        placeholder="/your-path"
         {...register("path", { required: "Path is required" })} 
         fullWidth 
         error={!!errors.path}
@@ -46,6 +47,7 @@ const MockAPIForm = ({ onCreate }) => {
 
       <TextField
         label="Response (JSON)"
+        placeholder="Only Json Data"
         {...register("response", { required: "Response is required" })}
         multiline
         minRows={5}
