@@ -69,6 +69,7 @@ app.get("/mock-apis", (req, res) => {
 // Delete a mock API
 app.delete("/delete-mock", (req, res) => {
   const { path, method } = req.body;
+
   if (!path || !mockAPIs[path]) {
     return res
       .status(400)
@@ -80,6 +81,11 @@ app.delete("/delete-mock", (req, res) => {
   if (upperMethod && mockAPIs[path][upperMethod]) {
     delete mockAPIs[path][upperMethod];
 
+    // If no methods left, delete the entire path
+    if (Object.keys(mockAPIs[path]).length === 0) {
+      delete mockAPIs[path];
+    }
+
     // Remove the specific method from Express router stack
     app._router.stack = app._router.stack.filter(
       (layer) =>
@@ -90,7 +96,7 @@ app.delete("/delete-mock", (req, res) => {
         )
     );
 
-    console.log(`❌ Mock API deleted: ${upperMethod} ${path}`);
+    console.log(`❌ Deleted Mock API: ${upperMethod} ${path}`);
     return res.json({
       message: `Mock API at ${path} [${upperMethod}] deleted successfully`,
     });
@@ -104,7 +110,7 @@ app.delete("/delete-mock", (req, res) => {
     (layer) => !(layer.route && layer.route.path === path)
   );
 
-  console.log(`❌ All Mock APIs deleted for path: ${path}`);
+  console.log(`❌ Deleted all Mock APIs for path: ${path}`);
   res.json({ message: `All Mock APIs at ${path} deleted successfully` });
 });
 
